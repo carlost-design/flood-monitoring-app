@@ -61,39 +61,7 @@ export class MemStorage implements IStorage {
   }
 
   private seedData() {
-    // Seed water level stations
-    this.createWaterLevelStation({
-      name: "Downtown Bridge",
-      location: "Downtown Bridge Area",
-      currentLevel: 8.7,
-      criticalLevel: 9.0,
-      warningLevel: 7.0,
-      status: "critical",
-      trend: "rising",
-      trendValue: 0.3,
-    });
-
-    this.createWaterLevelStation({
-      name: "Riverside Park",
-      location: "Riverside Park Area",
-      currentLevel: 5.4,
-      criticalLevel: 8.0,
-      warningLevel: 7.0,
-      status: "warning",
-      trend: "stable",
-      trendValue: 0.1,
-    });
-
-    this.createWaterLevelStation({
-      name: "Industrial District",
-      location: "Industrial District",
-      currentLevel: 3.2,
-      criticalLevel: 8.5,
-      warningLevel: 6.5,
-      status: "normal",
-      trend: "falling",
-      trendValue: -0.1,
-    });
+    // No water level stations seeded - data will be added via admin panel
 
     // Seed evacuation centers
     this.createEvacuationCenter({

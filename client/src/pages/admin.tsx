@@ -142,7 +142,8 @@ export default function AdminPage() {
                           step="0.1"
                           placeholder="7.8"
                           {...field}
-                          onChange={(e) => field.onChange(parseFloat(e.target.value))}
+                          value={field.value || ""}
+                          onChange={(e) => field.onChange(e.target.value ? parseFloat(e.target.value) : "")}
                         />
                       </FormControl>
                       <FormMessage />
@@ -162,7 +163,8 @@ export default function AdminPage() {
                           step="0.1"
                           placeholder="6.0"
                           {...field}
-                          onChange={(e) => field.onChange(parseFloat(e.target.value))}
+                          value={field.value || ""}
+                          onChange={(e) => field.onChange(e.target.value ? parseFloat(e.target.value) : "")}
                         />
                       </FormControl>
                       <FormMessage />
@@ -182,7 +184,8 @@ export default function AdminPage() {
                           step="0.1"
                           placeholder="8.0"
                           {...field}
-                          onChange={(e) => field.onChange(parseFloat(e.target.value))}
+                          value={field.value || ""}
+                          onChange={(e) => field.onChange(e.target.value ? parseFloat(e.target.value) : "")}
                         />
                       </FormControl>
                       <FormMessage />
