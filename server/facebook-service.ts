@@ -17,7 +17,7 @@ export interface FacebookResponse {
 
 export class FacebookService {
   private accessToken: string;
-  private pageId: string = "sanmateo.dpos";
+  private pageId: string = "61577877872915";
 
   constructor() {
     this.accessToken = process.env.FACEBOOK_ACCESS_TOKEN || '';

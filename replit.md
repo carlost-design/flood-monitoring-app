@@ -4,7 +4,7 @@
 
 FloodWatch is a community-powered flood monitoring and emergency response system built as a full-stack web application. The system provides real-time water level monitoring, evacuation center mapping, weather forecasting, and emergency assistance for flood-prone areas. It's designed to help communities stay safe during flood events through centralized monitoring and emergency coordination.
 
-**Latest Update**: Integrated Facebook Graph API to fetch real-time water level data from San Mateo DPOS Facebook page, providing authentic social media monitoring capabilities.
+**Latest Update**: Integrated Facebook Graph API to fetch real-time water level data from Facebook page (ID: 61577877872915), providing authentic social media monitoring capabilities.
 
 ## User Preferences
 
