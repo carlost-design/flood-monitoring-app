@@ -1,8 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertCommunityReportSchema } from "@shared/schema";
-import { facebookService } from "./facebook-service";
+import { insertCommunityReportSchema, insertWaterLevelStationSchema } from "@shared/schema";
 import { z } from "zod";
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -26,6 +25,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(station);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch water level station" });
+    }
+  });
+
+  app.post("/api/water-stations", async (req, res) => {
+    try {
+      const validatedData = insertWaterLevelStationSchema.parse(req.body);
+      const station = await storage.createWaterLevelStation(validatedData);
+      res.status(201).json(station);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ message: "Invalid station data", errors: error.errors });
+      }
+      res.status(500).json({ message: "Failed to create water level station" });
     }
   });
 
@@ -82,47 +94,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Facebook Data Integration
-  app.get("/api/facebook/water-levels", async (req, res) => {
-    try {
-      const stations = await facebookService.getWaterLevelStationsWithFallback();
-      res.json(stations);
-    } catch (error) {
-      console.error("Facebook API error:", error);
-      res.status(500).json({ message: "Failed to fetch Facebook water level data", error: error instanceof Error ? error.message : "Unknown error" });
-    }
-  });
 
-  app.get("/api/facebook/latest-update", async (req, res) => {
-    try {
-      const update = await facebookService.getLatestWaterLevelUpdate();
-      res.json(update);
-    } catch (error) {
-      console.error("Facebook API error:", error);
-      res.status(500).json({ message: "Failed to fetch latest Facebook update", error: error instanceof Error ? error.message : "Unknown error" });
-    }
-  });
-
-  // Sync Facebook data with local storage
-  app.post("/api/sync-facebook-data", async (req, res) => {
-    try {
-      const facebookStations = await facebookService.getWaterLevelStationsWithFallback();
-      const syncedStations = [];
-      
-      for (const station of facebookStations) {
-        const created = await storage.createWaterLevelStation(station);
-        syncedStations.push(created);
-      }
-      
-      res.json({ 
-        message: `Synced ${syncedStations.length} water level stations from Facebook`,
-        stations: syncedStations 
-      });
-    } catch (error) {
-      console.error("Facebook sync error:", error);
-      res.status(500).json({ message: "Failed to sync Facebook data", error: error instanceof Error ? error.message : "Unknown error" });
-    }
-  });
 
   const httpServer = createServer(app);
   return httpServer;
