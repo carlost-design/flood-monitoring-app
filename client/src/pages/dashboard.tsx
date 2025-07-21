@@ -82,35 +82,44 @@ export default function Dashboard() {
                 <p className="text-sm text-gray-600">Community Water Monitoring</p>
               </div>
             </div>
-            <nav className="hidden md:flex space-x-6">
-              <button 
-                onClick={() => setActiveSection("dashboard")}
-                className={`${activeSection === "dashboard" ? "text-blue-500 font-semibold border-b-2 border-blue-500 pb-1" : "text-gray-600 hover:text-blue-500"} transition-colors`}
+            <div className="flex items-center space-x-4">
+              <nav className="hidden md:flex space-x-6">
+                <button 
+                  onClick={() => setActiveSection("dashboard")}
+                  className={`${activeSection === "dashboard" ? "text-blue-500 font-semibold border-b-2 border-blue-500 pb-1" : "text-gray-600 hover:text-blue-500"} transition-colors`}
+                >
+                  Dashboard
+                </button>
+                <button 
+                  onClick={() => setActiveSection("map")}
+                  className={`${activeSection === "map" ? "text-blue-500 font-semibold border-b-2 border-blue-500 pb-1" : "text-gray-600 hover:text-blue-500"} transition-colors`}
+                >
+                  Evacuation Map
+                </button>
+                <button 
+                  onClick={() => setActiveSection("report")}
+                  className={`${activeSection === "report" ? "text-blue-500 font-semibold border-b-2 border-blue-500 pb-1" : "text-gray-600 hover:text-blue-500"} transition-colors`}
+                >
+                  Report
+                </button>
+                <button 
+                  onClick={() => setActiveSection("contacts")}
+                  className={`${activeSection === "contacts" ? "text-blue-500 font-semibold border-b-2 border-blue-500 pb-1" : "text-gray-600 hover:text-blue-500"} transition-colors`}
+                >
+                  Emergency Contacts
+                </button>
+              </nav>
+              <Button 
+                variant="outline" 
+                size="sm"
+                onClick={() => window.location.href = '/admin'}
               >
-                Dashboard
+                Admin Panel
+              </Button>
+              <button className="md:hidden text-gray-600">
+                <i className="fas fa-bars text-xl"></i>
               </button>
-              <button 
-                onClick={() => setActiveSection("map")}
-                className={`${activeSection === "map" ? "text-blue-500 font-semibold border-b-2 border-blue-500 pb-1" : "text-gray-600 hover:text-blue-500"} transition-colors`}
-              >
-                Evacuation Map
-              </button>
-              <button 
-                onClick={() => setActiveSection("report")}
-                className={`${activeSection === "report" ? "text-blue-500 font-semibold border-b-2 border-blue-500 pb-1" : "text-gray-600 hover:text-blue-500"} transition-colors`}
-              >
-                Report
-              </button>
-              <button 
-                onClick={() => setActiveSection("contacts")}
-                className={`${activeSection === "contacts" ? "text-blue-500 font-semibold border-b-2 border-blue-500 pb-1" : "text-gray-600 hover:text-blue-500"} transition-colors`}
-              >
-                Emergency Contacts
-              </button>
-            </nav>
-            <button className="md:hidden text-gray-600">
-              <i className="fas fa-bars text-xl"></i>
-            </button>
+            </div>
           </div>
         </div>
       </header>
