@@ -203,7 +203,7 @@ export class MemStorage implements IStorage {
     const newCenter: EvacuationCenter = {
       ...center,
       id,
-      distance: undefined,
+      distance: null,
     };
     this.evacCenters.set(id, newCenter);
     return newCenter;
@@ -218,7 +218,13 @@ export class MemStorage implements IStorage {
   async createCommunityReport(report: InsertCommunityReport): Promise<CommunityReport> {
     const id = this.currentId++;
     const newReport: CommunityReport = {
-      ...report,
+      location: report.location,
+      waterLevel: report.waterLevel,
+      details: report.details || null,
+      reporterName: report.reporterName || null,
+      shareLocation: report.shareLocation,
+      latitude: report.latitude || null,
+      longitude: report.longitude || null,
       id,
       createdAt: new Date(),
     };

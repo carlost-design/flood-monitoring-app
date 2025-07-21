@@ -7,6 +7,7 @@ import CommunityReportForm from "@/components/community-report-form";
 import WeatherForecast from "@/components/weather-forecast";
 import EmergencyContacts from "@/components/emergency-contacts";
 import MobileNavigation from "@/components/mobile-navigation";
+import FacebookData from "@/components/facebook-data";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -153,6 +154,9 @@ export default function Dashboard() {
             <span className="text-sm opacity-90">Safe Zones</span>
           </Button>
         </section>
+
+        {/* Facebook Data Section - Always visible */}
+        <FacebookData />
 
         {/* Dashboard Section */}
         {activeSection === "dashboard" && (
